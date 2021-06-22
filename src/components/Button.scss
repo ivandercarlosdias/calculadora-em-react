@@ -1,0 +1,28 @@
+.btn {
+    font-size: 1.4rem;
+    background-color: #d9d9d9;
+    background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    outline: none;
+    text-align: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        filter: brightness(0.95);
+    }
+
+    &.operator {
+        background-color: #f0af38;
+        background-image: radial-gradient(#f0af38 0%, #e6a224 100%);
+    }
+
+    &.size-2 {
+        grid-column: span 2;
+    }
+    &.size-3 {
+        grid-column: span 3;
+    }
+}

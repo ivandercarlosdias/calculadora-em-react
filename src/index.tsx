@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom'
 
-import App from './App'
+import Calculator from './main/Calculator'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import './index.scss'
+
+ReactDOM.render(<Calculator />, document.getElementById('root'))

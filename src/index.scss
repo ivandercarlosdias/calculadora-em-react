@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('./fonts/Roboto-Thin.ttf');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #eacda3;
+    background: linear-gradient(to right, #d6a668, #eacda3);
+    color: #4f4f4d;
+}
