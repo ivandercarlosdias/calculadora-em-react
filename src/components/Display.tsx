@@ -1,7 +1,7 @@
 import './Display.scss'
 
 interface IDisplayProps {
-    value: number
+    value: string
 }
 
 export default function Display(props: IDisplayProps): JSX.Element {
