@@ -5,5 +5,9 @@ interface IDisplayProps {
 }
 
 export default function Display(props: IDisplayProps): JSX.Element {
-    return <div className="display">{props.value}</div>
+    return (
+        <div className="display">
+            <h2>{props.value}</h2>
+        </div>
+    )
 }

@@ -7,8 +7,14 @@
     background-color: #505050;
     border: 1px solid #222;
     border-bottom: 0;
-    color: #fff;
-    font-size: 2rem;
-    font-weight: bold;
-    overflow: hidden;
+
+    h2 {
+        margin: 0;
+        color: #fff;
+        font-size: 2rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
