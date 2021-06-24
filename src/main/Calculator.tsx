@@ -9,7 +9,8 @@ interface IInitialState {
     displayValue: string
     clearDisplay: boolean
     operator: string | null
-    current: string
+    values: Array<number>
+    valuesIndex: number
 }
 
 export default function Calculator() {
@@ -17,13 +18,41 @@ export default function Calculator() {
         displayValue: '0',
         clearDisplay: false,
         operator: null,
-        current: '0',
+        values: [0, 0],
+        valuesIndex: 0,
     }
 
     const [calc, setDisplayValue] = useState<IInitialState>(initialState)
 
     function setOperator(label: string) {
-        console.log(label)
+        if (calc.valuesIndex === 0) {
+            setDisplayValue((initialState) => ({
+                ...initialState,
+                operator: label,
+                valuesIndex: 1,
+                clearDisplay: true,
+            }))
+        } else {
+            const equals = label === '='
+            const currentOperator = calc.operator
+
+            const newValues = { ...calc.values }
+
+            try {
+                newValues[0] = eval(`${newValues[0]} ${currentOperator} ${newValues[1]}`)
+            } catch (error) {
+                newValues[0] = calc.values[0]
+            }
+            newValues[1] = 0
+
+            setDisplayValue(() => ({
+                displayValue: newValues[0].toString(),
+                clearDisplay: !equals,
+                operator: equals ? null : currentOperator,
+                values: newValues,
+                valuesIndex: equals ? 0 : 1,
+            }))
+        }
     }
 
     function clearMemory() {
@@ -37,7 +66,23 @@ export default function Calculator() {
         const currentValue = clearDisplay ? '' : calc.displayValue
         const newDisplayValue = currentValue + label
 
-        setDisplayValue((initialState) => ({ ...initialState, displayValue: newDisplayValue, clearDisplay: false }))
+        setDisplayValue((initialState) => ({
+            ...initialState,
+            displayValue: newDisplayValue,
+            clearDisplay: false,
+        }))
+
+        if (label !== '.') {
+            const i = calc.valuesIndex
+            const newValue = parseFloat(newDisplayValue)
+            const newValues = { ...calc.values }
+            newValues[i] = newValue
+
+            setDisplayValue((initialState) => ({
+                ...initialState,
+                values: newValues,
+            }))
+        }
     }
 
     return (
