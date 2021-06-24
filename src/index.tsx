@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 
-import Calculator from './main/Calculator'
+import Calculator from './modules/main'
 
 import './index.scss'
 

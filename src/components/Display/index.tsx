@@ -1,8 +1,6 @@
-import './Display.scss'
+import { IDisplayProps } from './type'
 
-interface IDisplayProps {
-    value: string
-}
+import './style.scss'
 
 export default function Display(props: IDisplayProps): JSX.Element {
     return (

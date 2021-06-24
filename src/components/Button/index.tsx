@@ -1,12 +1,6 @@
-import './Button.scss'
+import { IButtonProps } from './type'
 
-interface IButtonProps {
-    label: string
-    size?: string
-    operator?: boolean
-    action?(label: string): void
-    clear?(): void
-}
+import './style.scss'
 
 export default function Button(props: IButtonProps): JSX.Element {
     let classes = 'btn '

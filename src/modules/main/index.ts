@@ -1,27 +1,13 @@
-import { useState } from 'react'
+import { createElement, useState } from 'react'
 
-import Display from '../components/Display'
-import Button from '../components/Button'
+import { IInitialState, IViewProps } from './types'
+import { initialState } from './data'
 
-import './Calculator.scss'
+import Main from './view'
 
-interface IInitialState {
-    displayValue: string
-    clearDisplay: boolean
-    operator: string | null
-    values: Array<number>
-    valuesIndex: number
-}
+import './style.scss'
 
-export default function Calculator() {
-    const initialState: IInitialState = {
-        displayValue: '0',
-        clearDisplay: false,
-        operator: null,
-        values: [0, 0],
-        valuesIndex: 0,
-    }
-
+export default function MainContainer(): JSX.Element {
     const [calc, setDisplayValue] = useState<IInitialState>(initialState)
 
     function setOperator(label: string) {
@@ -85,30 +71,7 @@ export default function Calculator() {
         }
     }
 
-    return (
-        <>
-            <h1 className="title">Calculadora em React</h1>
-            <div className="calculator">
-                <Display value={calc.displayValue} />
+    const viewProps: IViewProps = { calc, setOperator, clearMemory, addDigit }
 
-                <Button size="3" label="AC" clear={clearMemory} />
-                <Button operator label="/" action={setOperator} />
-                <Button label="7" action={addDigit} />
-                <Button label="8" action={addDigit} />
-                <Button label="9" action={addDigit} />
-                <Button operator label="*" action={setOperator} />
-                <Button label="4" action={addDigit} />
-                <Button label="5" action={addDigit} />
-                <Button label="6" action={addDigit} />
-                <Button operator label="-" action={setOperator} />
-                <Button label="1" action={addDigit} />
-                <Button label="2" action={addDigit} />
-                <Button label="3" action={addDigit} />
-                <Button operator label="+" action={setOperator} />
-                <Button size="2" label="0" action={addDigit} />
-                <Button label="." action={addDigit} />
-                <Button operator label="=" action={setOperator} />
-            </div>
-        </>
-    )
+    return createElement(Main, viewProps)
 }
